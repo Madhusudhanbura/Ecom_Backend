@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 const { Schema } = mongoose
 const crypto = require("crypto")
 const { v4 : uuidv4 } = require("uuid")
@@ -38,9 +38,9 @@ userSchema.virtual("password").set(function(password){
 })
 
 
-userSchema.method = {
+userSchema.methods = {
     
-    encrypt_password: function(plainPass){
+    encrypt_password : function(plainPass){
         if(!plainPass) return "";
         try {
             return crypto.createHmac('sha256',this.salt)
@@ -50,7 +50,13 @@ userSchema.method = {
         catch (error){
             return "";
         }
+    },
+
+    authenticate : function(plainPass){
+        return this.encrypt_password(plainPass) == this.encrypted_password;
     }
+
+
 }
 
 module.exports = mongoose.model("User", userSchema);
