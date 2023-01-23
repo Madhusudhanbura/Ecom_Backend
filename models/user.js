@@ -54,8 +54,9 @@ userSchema.methods = {
 
     authenticate : function(plainPass){
         return this.encrypt_password(plainPass) == this.encrypted_password;
-    }
+    },
 
+    
 
 }
 
