@@ -6,7 +6,7 @@ function signup(req,res){
     const user1 = new User(req.body)
     user1.save((err,user1) => {
         if(err){
-            return res.send(err);
+            return res.json({"err": "error"});
         }
         user1.salt = undefined
         user1.encrypted_password = undefined
@@ -18,6 +18,7 @@ function signup(req,res){
 function signin(req,res){
     const email = req.body.email
     const password = req.body.password
+    if(!(email && password)) return res.json({"err": "enter details"})
     User.findOne({email},(err,user) => {
         if(err){
             return res.json({"error" : " bhai err aya hai dekhle"})

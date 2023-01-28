@@ -4,6 +4,7 @@ const bodyparser = require('body-parser')
 const authrouter = require('./routes/auth');
 const userrouter = require('./routes/user')
 const categoryRouter = require('./routes/category')
+const prodRouter = require('./routes/product')
 const { default: mongoose } = require('mongoose');
 const cookie = require('cookie-parser')
 require('dotenv').config()
@@ -18,6 +19,7 @@ app.use(cookie())
 app.use('',authrouter)
 app.use('',userrouter)
 app.use('',categoryRouter)
+app.use('',prodRouter)
 app.listen(3000,() => {
     console.log('Server is listening');
 })
