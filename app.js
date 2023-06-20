@@ -7,6 +7,7 @@ const categoryRouter = require('./routes/category')
 const prodRouter = require('./routes/product')
 const { default: mongoose } = require('mongoose');
 const cookie = require('cookie-parser')
+const PORT = process.env.PORT
 require('dotenv').config()
 
 mongoose.set("strictQuery", false);
@@ -20,7 +21,7 @@ app.use('',authrouter)
 app.use('',userrouter)
 app.use('',categoryRouter)
 app.use('',prodRouter)
-app.listen(3000,() => {
+app.listen(PORT,() => {
     console.log('Server is listening');
 })
 
