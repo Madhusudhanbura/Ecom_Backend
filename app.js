@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express()
 const bodyparser = require('body-parser')
@@ -8,7 +10,6 @@ const prodRouter = require('./routes/product')
 const { default: mongoose } = require('mongoose');
 const cookie = require('cookie-parser')
 const PORT = process.env.PORT
-require('dotenv').config()
 
 mongoose.set("strictQuery", false);
 mongoose
